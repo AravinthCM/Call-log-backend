@@ -41,7 +41,7 @@ const patientSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    medicalRecords:{
+    medicalRecords: {
         type: String,
         default: "pending"
     }

@@ -1,10 +1,11 @@
-// server.js
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
+const patientRoutes = require('./routes/patient');
+const dashboardRoutes = require('./routes/dashboard');
 
 const app = express();
 app.use(cors());
@@ -18,12 +19,11 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch(err => console.error('MongoDB connection error:', err));
 
 app.use('/api/auth', authRoutes);
-
-const patients = require('./routes/patient'); // Ensure this path is correct
-app.use('/api/patients', patients);
+app.use('/api/patients', patientRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 app.get('/api/test', (req, res) => {
     res.json({ message: 'API is working!' });
-  });
+});
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
