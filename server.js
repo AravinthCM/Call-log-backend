@@ -19,6 +19,9 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.use('/api/auth', authRoutes);
 
+const patients = require('./routes/patient'); // Ensure this path is correct
+app.use('/api/patients', patients);
+
 app.get('/api/test', (req, res) => {
     res.json({ message: 'API is working!' });
   });
