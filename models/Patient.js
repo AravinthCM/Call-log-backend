@@ -44,6 +44,10 @@ const patientSchema = new mongoose.Schema({
     medicalRecords: {
         type: String,
         default: "pending"
+    },
+    callFromApp: {
+        type: String,
+        default: 'pending'
     }
 });
 

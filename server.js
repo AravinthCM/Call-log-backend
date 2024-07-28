@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
-const patientRoutes = require('./routes/patient');
+const patientTableRoutes = require('./routes/patientTable');  // Rename to be consistent
 const dashboardRoutes = require('./routes/dashboard');
+const patientTable = require('./routes/patientTable');
 
 const app = express();
 app.use(cors());
@@ -19,8 +20,10 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch(err => console.error('MongoDB connection error:', err));
 
 app.use('/api/auth', authRoutes);
-app.use('/api/patients', patientRoutes);
+//app.use('/api/patients', patientTable);  // Update the route to match the frontend request
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/patients', patientTableRoutes);
+
 
 app.get('/api/test', (req, res) => {
     res.json({ message: 'API is working!' });
